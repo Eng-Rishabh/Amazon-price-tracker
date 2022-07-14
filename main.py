@@ -17,8 +17,8 @@ def price(url):
     soup = bs4.BeautifulSoup(page, "html.parser")
     prices = soup.find(class_="a-price-whole").get_text()
     price = float((((prices.replace(",", "")).replace("र", "")).replace("\"\" ", "")).replace(".", ""))
-    if(current_price < price):
-        current_price = price;
+    if current_price < price:
+        current_price = price
         return price
     else:
         return 0
@@ -41,11 +41,8 @@ def sending_mail():
     )
     server.quit()
 
-sending_mail();
 
-
-
-# while True:
-#     if(price(url)):
-#         sending_mail()
-#     time.sleep(25000)
+while True:
+    if price(url):
+        sending_mail()
+    time.sleep(25000)
